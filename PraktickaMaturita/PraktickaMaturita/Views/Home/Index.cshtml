@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Poznámky";
 }
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 @using Microsoft.AspNetCore.Http;
@@ -22,12 +22,12 @@ else
     @:</div>
     @:<a class="pridat" href="#">+ Přidat poznámku</a>
     @:<div id="poznamkovy-container">
-        @if(Model == null || Model.Count == 0)
+        @*@if(Model == null || Model.Count == 0)
         {
             @: <p><i>Dosud nebyly přidány žádné poznámky.</i></p>
         }
         @foreach(PraktickaMaturita.Models.Poznamka poznamka in Model)
-        {}
+        {}*@
     @:</div>
 }
 
