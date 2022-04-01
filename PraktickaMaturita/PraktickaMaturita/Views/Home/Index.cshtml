@@ -3,6 +3,7 @@
 }
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 @using Microsoft.AspNetCore.Http;
+@model List<PraktickaMaturita.Models.Poznamka>;
 
 @{
     string? prihlaseny = HttpContextAccessor.HttpContext.Session.GetString("Prihlaseny");
@@ -20,5 +21,13 @@ else
     @:<h1 class="display-4">Vítej zde, @prihlaseny</h1>
     @:</div>
     @:<a class="pridat" href="#">+ Přidat poznámku</a>
+    @:<div id="poznamkovy-container">
+        @if(Model == null || Model.Count == 0)
+        {
+            @: <p><i>Dosud nebyly přidány žádné poznámky.</i></p>
+        }
+        @foreach(PraktickaMaturita.Models.Poznamka poznamka in Model)
+        {}
+    @:</div>
 }
 
