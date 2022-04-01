@@ -8,7 +8,7 @@ namespace PraktickaMaturita.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; } = String.Empty;
+        public string Jmeno { get; set; } = String.Empty;
 
         [Required]
         public string Email { get; set; } = String.Empty;

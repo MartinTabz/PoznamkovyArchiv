@@ -1,8 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@using Microsoft.AspNetCore.Http;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{
+    string? prihlaseny = HttpContextAccessor.HttpContext.Session.GetString("Prihlaseny");
+}
+@if(prihlaseny == null)
+{
+    <div class="text-center">
+        <h1 class="display-4">Vítejte!</h1>
+        <p>Pokud chcete vytvářet poznámky <a asp-area="" asp-controller="Uzivatel" asp-action="Prihlasit">přihlašte se</a>, nebo si <a asp-area="" asp-controller="Uzivatel" asp-action="Registrovat">vytvořte účet</a>.</p>
+    </div>
+}
+else
+{
+    @:<div class="text-center">
+    @:<h1 class="display-4">Vítej zde, @prihlaseny</h1>
+    @:</div>
+    @:<a class="pridat" href="#">+ Přidat poznámku</a>
+}
+

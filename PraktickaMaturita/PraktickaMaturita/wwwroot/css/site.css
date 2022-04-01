@@ -16,3 +16,26 @@ html {
 body {
   margin-bottom: 60px;
 }
+.pridat {
+    margin: 0;
+    padding: 0;
+    background-color: #3474eb;
+    color: white;
+    padding: 10px 30px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: Bahnschrift, sans-serif;
+    position: relative;
+    text-align: center;
+    left: 00%;
+    transform: translate(-50%);
+    text-decoration: none;
+}
+.pridat:hover {
+    color: #3474eb;
+    background-color: white;
+    border: 1px solid grey;
+    transition: all .4s ease-in-out;
+}
