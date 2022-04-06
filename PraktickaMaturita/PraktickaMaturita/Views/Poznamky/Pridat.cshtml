@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Nová poznámka";
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@using Microsoft.AspNetCore.Http;
+
+@{
+    string? prihlaseny = HttpContextAccessor.HttpContext.Session.GetString("Prihlaseny");
+}
+
+@if(prihlaseny == null)
+{
+        <h1 class="page-title">Poznámka nelze vytvořit!</h1>
+        <p class="prihlas-se">Pokud chcete vytvářet poznámky <a asp-area="" asp-controller="Uzivatel" asp-action="Prihlasit">přihlašte se</a>, nebo si <a asp-area="" asp-controller="Uzivatel" asp-action="Registrovat">vytvořte účet</a>.</p>
+}
+else
+{
+    <form action="/Poznamky/Pridat" method="post">
+        <input required type="text" name="nadpis" placeholder="Název poznámky" />
+        <input required type="text" name="popis" placeholder="Popis poznámky" />
+        <input type="submit" value="Přidat" />
+    </form>
+}

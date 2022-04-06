@@ -1,0 +1,36 @@
+﻿@model List<PraktickaMaturita.Models.Poznamka>;
+
+@{
+    ViewData["Title"] = "Vše";
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@using Microsoft.AspNetCore.Http;
+
+@{
+    string? prihlaseny = HttpContextAccessor.HttpContext.Session.GetString("Prihlaseny");
+}
+@if(prihlaseny == null)
+{
+
+    <h1 class="page-title">Nelze zobrazit poznámky!</h1>
+    <p class="prihlas-se">Pokud chcete vytvářet poznámky <a asp-area="" asp-controller="Uzivatel" asp-action="Prihlasit">přihlašte se</a>, nebo si <a asp-area="" asp-controller="Uzivatel" asp-action="Registrovat">vytvořte účet</a>.</p>
+}
+else
+{
+    <h1 class="page-title">Vaše poznámky</h1>
+
+    @:<div id="mrizka-poznamek">
+        @if (Model == null || Model.Count == 0)
+        {
+            @: <p class="prihlas-se">Zatím nemáte žádné poznámky.</p>
+        }
+        @foreach(PraktickaMaturita.Models.Poznamka poznamka in Model)
+        {
+            <div class="poznamka">
+                <h2>@poznamka.Nadpis</h2>
+                <p>@poznamka.Popis</p>
+                <p>@poznamka.DatumVlozeni</p>
+            </div>
+        }
+    @:</div>
+}

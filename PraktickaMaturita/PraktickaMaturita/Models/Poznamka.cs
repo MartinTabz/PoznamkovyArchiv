@@ -12,8 +12,7 @@ namespace PraktickaMaturita.Models
 
         public string Popis { get; set; } = String.Empty;
 
-        [Required]
-        public DateTime? Vlozeni { get; set; }
+        public DateTime DatumVlozeni { get; set; } = DateTime.Now;
 
         [Required]
         virtual public Uzivatel? Autor { get; set; }

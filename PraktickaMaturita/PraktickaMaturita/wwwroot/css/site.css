@@ -39,3 +39,20 @@ body {
     border: 1px solid grey;
     transition: all .4s ease-in-out;
 }
+.page-title {
+    text-align: center;
+    padding: 20px 0 40px 0;
+    text-transform: uppercase;
+}
+#container {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+.prihlas-se {
+    text-align: center;
+}
+.prihlas-se a {
+    text-decoration: none;
+    color: tomato;
+}

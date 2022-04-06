@@ -43,31 +43,35 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="/Uzivatel/Odhlasit">Odhlásit se</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Poznamky" asp-action="Vypsat">Moje poznámky</a>
+                            </li>
                         }
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <main>
+        <div id="container">
             @RenderBody()
-        </main>
-    </div>
+        </div>
+    </main>
 
     <footer class="border-top footer text-muted">
         @if (prihlaseny == null)
         {
-            <div class="container">
+            <div class="prihlas-se">
                 &copy; 2022 - Archiv Poznámek
             </div>
         }
-        else {
-            <div class="container">
+        else
+        {
+            <div class="prihlas-se">
                 &copy; 2022 - Archiv Poznámek - <a asp-area="" asp-controller="Uzivatel" asp-action="Smazat">Smazat účet</a>
             </div>
         }
-    </footer>
+        </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
