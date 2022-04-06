@@ -41,10 +41,13 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="/Uzivatel/Odhlasit">Odhlásit se</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Poznamky" asp-action="Vypsat">Moje poznámky</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Poznamky" asp-action="Vypsat">Moje poznámky</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Uzivatel" asp-action="Nastaveni">Uživatel</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Uzivatel/Odhlasit">Odhlásit se</a>
                             </li>
                         }
                     </ul>
@@ -59,18 +62,9 @@
     </main>
 
     <footer class="border-top footer text-muted">
-        @if (prihlaseny == null)
-        {
             <div class="prihlas-se">
                 &copy; 2022 - Archiv Poznámek
             </div>
-        }
-        else
-        {
-            <div class="prihlas-se">
-                &copy; 2022 - Archiv Poznámek - <a asp-area="" asp-controller="Uzivatel" asp-action="Smazat">Smazat účet</a>
-            </div>
-        }
         </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

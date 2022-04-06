@@ -98,7 +98,7 @@ namespace PraktickaMaturita.Controllers
         }
 
         [HttpPost]
-        public IActionResult Smazat()
+        public IActionResult Smazat(int id)
         {
             Uzivatel? prihlasenyUzivatel = KdoJePrihlasen();
 
@@ -106,16 +106,17 @@ namespace PraktickaMaturita.Controllers
                 return RedirectToAction("Prihlasit", "Uzivatel");
 
             Uzivatel? mazanyUzivatel = _databaze.Uzivatele
-                .Where(u = u.Id == id)
+                .Where(u => u.Id == id)
                 .FirstOrDefault();
 
-            if (mazanyUzivatel != null && mazanyUzivatel.Autor == prihlasenyUzivatel)
+            if (mazanyUzivatel != null && mazanyUzivatel.Id == prihlasenyUzivatel.Id)
             {
+                HttpContext.Session.Clear();
                 _databaze.Uzivatele.Remove(mazanyUzivatel);
                 _databaze.SaveChanges();
             }
 
-            
+            return RedirectToAction("Index", "Home");
         }
         private Uzivatel? KdoJePrihlasen()
         {
@@ -130,6 +131,11 @@ namespace PraktickaMaturita.Controllers
                 .FirstOrDefault();
 
             return prihlasenyUzivatel;
+        }
+
+        public IActionResult Nastaveni()
+        {
+            return View();
         }
     }
 }

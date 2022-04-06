@@ -1,7 +1,5 @@
-﻿@model List<PraktickaMaturita.Models.Poznamka>;
-
-@{
-    ViewData["Title"] = "Domů";
+﻿@{
+    ViewData["Title"] = "Uživatel";
 }
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 @using Microsoft.AspNetCore.Http;
@@ -11,14 +9,14 @@
 }
 @if(prihlaseny == null)
 {
-
     <h1 class="page-title">Vítejte!</h1>
     <p class="prihlas-se">Pokud chcete vytvářet poznámky <a asp-area="" asp-controller="Uzivatel" asp-action="Prihlasit">přihlašte se</a>, nebo si <a asp-area="" asp-controller="Uzivatel" asp-action="Registrovat">vytvořte účet</a>.</p>
 }
 else
 {
-    <h1 class="page-title">Vítám tě zde, @prihlaseny !</h1>
-    <a asp-area="" asp-controller="Poznamky" asp-action="Pridat" class="pridat">+ Přidat poznámku</a>
-    <a asp-area="" asp-controller="Poznamky" asp-action="Vypsat" class="pridat">Vypsat poznámky</a>
+    <h2>Nastavení účtu</h2>
+    <input type="text" value="martin" disabled />
+    <input type="text" value="mail@martinsil.cz" disabled />
+    <a style="text-decoration: none;" href="/Uzivatel/Odhlasit">Odhlásit</a>
+    <a style="text-decoration: none; color: red;" href="#">Smazat účet</a>
 }
-
