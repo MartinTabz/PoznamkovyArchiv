@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<PraktickaMaturita.Models.Poznamka>;
+
+@{
+    ViewData["Title"] = "Domů";
 }
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 @using Microsoft.AspNetCore.Http;
@@ -9,16 +11,14 @@
 }
 @if(prihlaseny == null)
 {
-    <div class="text-center">
-        <h1 class="display-4">Vítejte!</h1>
-        <p>Pokud chcete vytvářet poznámky <a asp-area="" asp-controller="Uzivatel" asp-action="Prihlasit">přihlašte se</a>, nebo si <a asp-area="" asp-controller="Uzivatel" asp-action="Registrovat">vytvořte účet</a>.</p>
-    </div>
+
+    <h1 class="page-title">Vítejte!</h1>
+    <p class="prihlas-se">Pokud chcete vytvářet poznámky <a asp-area="" asp-controller="Uzivatel" asp-action="Prihlasit">přihlašte se</a>, nebo si <a asp-area="" asp-controller="Uzivatel" asp-action="Registrovat">vytvořte účet</a>.</p>
 }
 else
 {
-    @:<div class="text-center">
-    @:<h1 class="display-4">Vítej zde, @prihlaseny</h1>
-    @:</div>
-    @:<a class="pridat" href="#">+ Přidat poznámku</a>
+    <h1 class="page-title">Vítám tě zde, @prihlaseny !</h1>
+    <a asp-area="" asp-controller="Poznamky" asp-action="Pridat" class="pridat">+ Přidat poznámku</a>
+    <a asp-area="" asp-controller="Poznamky" asp-action="Vypsat" class="pridat">Vypsat poznámky</a>
 }
 
