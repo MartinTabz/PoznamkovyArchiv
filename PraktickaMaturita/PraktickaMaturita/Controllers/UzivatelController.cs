@@ -79,6 +79,8 @@ namespace PraktickaMaturita.Controllers
                 return RedirectToAction("Prihlasit");
 
             HttpContext.Session.SetString("Prihlaseny", prihlasovanyUzivatel.Jmeno);
+            HttpContext.Session.SetString("PrihlasenyMail", prihlasovanyUzivatel.Email);
+            HttpContext.Session.SetInt32("Identita", prihlasovanyUzivatel.Id);
 
             return RedirectToAction("Index", "Home");
         }
@@ -98,7 +100,7 @@ namespace PraktickaMaturita.Controllers
         }
 
         [HttpPost]
-        public IActionResult Smazat(int id)
+        public IActionResult Smazat(int mazany)
         {
             Uzivatel? prihlasenyUzivatel = KdoJePrihlasen();
 
@@ -106,15 +108,20 @@ namespace PraktickaMaturita.Controllers
                 return RedirectToAction("Prihlasit", "Uzivatel");
 
             Uzivatel? mazanyUzivatel = _databaze.Uzivatele
-                .Where(u => u.Id == id)
+                .Where(u => u.Id == mazany)
                 .FirstOrDefault();
 
             if (mazanyUzivatel != null && mazanyUzivatel.Id == prihlasenyUzivatel.Id)
             {
-                HttpContext.Session.Clear();
                 _databaze.Uzivatele.Remove(mazanyUzivatel);
                 _databaze.SaveChanges();
+                HttpContext.Session.Clear();
             }
+            else
+            {
+                return RedirectToAction("Privacy", "Home");
+            }
+
 
             return RedirectToAction("Index", "Home");
         }
