@@ -79,14 +79,14 @@ namespace PraktickaMaturita.Controllers
                 return RedirectToAction("Prihlasit");
             //if (prihlasovanyUzivatel.Heslo != heslo)
             bool validPassword = BCrypt.Net.BCrypt.Verify(heslo, prihlasovanyUzivatel.Heslo);
-            if (validPassword = false)
+            if (validPassword == false)
                 return RedirectToAction("Prihlasit");
 
             HttpContext.Session.SetString("Prihlaseny", prihlasovanyUzivatel.Jmeno);
             HttpContext.Session.SetString("PrihlasenyMail", prihlasovanyUzivatel.Email);
             HttpContext.Session.SetInt32("Identita", prihlasovanyUzivatel.Id);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Vypsat", "Poznamky");
         }
 
         [HttpGet]
@@ -94,7 +94,7 @@ namespace PraktickaMaturita.Controllers
         {
             HttpContext.Session.Clear();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Vypsat", "Poznamky");
         }
 
         [HttpGet]
@@ -117,7 +117,7 @@ namespace PraktickaMaturita.Controllers
                 HttpContext.Session.Clear();
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Vypsat", "Poznamky");
         }
         private Uzivatel? KdoJePrihlasen()
         {

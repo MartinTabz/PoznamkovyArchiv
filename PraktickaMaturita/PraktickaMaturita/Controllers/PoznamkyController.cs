@@ -41,16 +41,13 @@ namespace PraktickaMaturita.Controllers
             _databaze.Add(pridavanaPoznamka);
             _databaze.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Vypsat", "Poznamky");
         }
 
         [HttpGet]
         public IActionResult Vypsat()
         {
             Uzivatel? prihlasenyUzivatel = KdoJePrihlasen();
-
-            if (prihlasenyUzivatel == null)
-                return RedirectToAction("Prihlasit", "Uzivatel");
 
             List<Poznamka> vsechnyUkoly = _databaze.Poznamky
                 .Where(u => u.Autor == prihlasenyUzivatel)

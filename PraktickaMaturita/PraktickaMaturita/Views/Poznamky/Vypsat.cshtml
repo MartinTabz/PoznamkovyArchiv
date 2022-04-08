@@ -12,12 +12,13 @@
 @if(prihlaseny == null)
 {
 
-    <h1 class="page-title">Nelze zobrazit poznámky!</h1>
+    <h1 class="page-title">Vítejte v poznámkovém archivu!</h1>
     <p class="prihlas-se">Pokud chcete vytvářet poznámky <a asp-area="" asp-controller="Uzivatel" asp-action="Prihlasit">přihlašte se</a>, nebo si <a asp-area="" asp-controller="Uzivatel" asp-action="Registrovat">vytvořte účet</a>.</p>
 }
 else
 {
-    <h1 class="page-title">Vaše poznámky</h1>
+    <h1 class="page-title">Vítám tě zde, @prihlaseny !</h1>
+    <a asp-area="" asp-controller="Poznamky" asp-action="Pridat" class="pridat">+ Přidat poznámku</a>
 
     @:<div id="mrizka-poznamek">
         @if (Model == null || Model.Count == 0)

@@ -16,6 +16,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+container {
+    width: 75%;
+    margin: 0 auto;
+}
 .pridat {
     margin: 0;
     padding: 0;
@@ -60,18 +64,20 @@ body {
     padding: 30px;
     border: 2px solid black;
     border-radius: 8px;
-    width: 500px;
+    width: 90%;
+    max-width: 500px;
     height: 300px;
     position: relative;
     left: 50%;
     transform: translate(-50%);
-    margin: 10px 0;
+    margin: 30px 0;
 }
 .dulezita-poznamka {
     padding: 30px;
     border: 2px solid red;
     border-radius: 8px;
-    width: 500px;
+    width: 90%;
+    max-width: 500px;
     height: 300px;
     position: relative;
     left: 50%;
