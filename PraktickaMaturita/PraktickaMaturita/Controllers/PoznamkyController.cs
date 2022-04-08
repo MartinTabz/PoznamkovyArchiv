@@ -85,5 +85,26 @@ namespace PraktickaMaturita.Controllers
 
             return prihlasenyUzivatel;
         }
+
+        [HttpGet]
+        public IActionResult Smazat(int id)
+        {
+            Uzivatel? prihlasenyUzivatel = KdoJePrihlasen();
+
+            if (prihlasenyUzivatel == null)
+                return RedirectToAction("Prihlasit", "Uzivatel");
+
+            Poznamka? mazanaPoznamka = _databaze.Poznamky
+                .Where(u => u.Id == id)
+                .FirstOrDefault();
+
+            if (mazanaPoznamka != null && mazanaPoznamka.Autor == prihlasenyUzivatel)
+            {
+                _databaze.Poznamky.Remove(mazanaPoznamka);
+                _databaze.SaveChanges();
+            }
+
+            return RedirectToAction("Vypsat");
+        }
     }
 }
