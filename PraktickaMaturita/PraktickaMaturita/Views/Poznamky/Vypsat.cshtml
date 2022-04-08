@@ -27,7 +27,7 @@ else
         @foreach(PraktickaMaturita.Models.Poznamka poznamka in Model)
         {
             <div class="poznamka">
-                <h2>@poznamka.Nadpis</h2>
+                <h2><a href="/Poznamky/Poznamka/@poznamka.Id">@poznamka.Nadpis</a></h2>
                 <p>@poznamka.Popis</p>
                 <p>@poznamka.DatumVlozeni</p>
             </div>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Session;
 using PraktickaMaturita.Data;
 using PraktickaMaturita.Models;
+using System.Diagnostics;
 
 namespace PraktickaMaturita.Controllers
 {
@@ -57,6 +58,18 @@ namespace PraktickaMaturita.Controllers
             return View(vsechnyUkoly);
         }
 
+        public IActionResult Poznamka(int id)
+        {
+            Debug.WriteLine("id:" + id);
+            Poznamka vsechnyPoznamky = _databaze.Poznamky
+                .Where(u => u.Id == id)
+                .FirstOrDefault();
+
+
+            ViewData["name"] = vsechnyPoznamky.Nadpis;
+
+            return View(vsechnyPoznamky);
+        }
 
         private Uzivatel? KdoJePrihlasen()
         {
