@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Session;
 using PraktickaMaturita.Data;
 using PraktickaMaturita.Models;
+using BCrypt.Net;
 
 namespace PraktickaMaturita.Controllers
 {
@@ -45,7 +46,7 @@ namespace PraktickaMaturita.Controllers
             Uzivatel novyUzivatel = new Uzivatel()
             {
                 Jmeno = jmeno,
-                Heslo = heslo,
+                Heslo = BCrypt.Net.BCrypt.HashPassword(heslo),
                 Email = email,
             };
 
@@ -75,7 +76,9 @@ namespace PraktickaMaturita.Controllers
 
             if (prihlasovanyUzivatel == null)
                 return RedirectToAction("Prihlasit");
-            if (prihlasovanyUzivatel.Heslo != heslo)
+            //if (prihlasovanyUzivatel.Heslo != heslo)
+            bool validPassword = BCrypt.Net.BCrypt.Verify(heslo, prihlasovanyUzivatel.Heslo);
+            if (validPassword = false)
                 return RedirectToAction("Prihlasit");
 
             HttpContext.Session.SetString("Prihlaseny", prihlasovanyUzivatel.Jmeno);
