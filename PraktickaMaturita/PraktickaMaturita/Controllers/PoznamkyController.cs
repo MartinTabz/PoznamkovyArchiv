@@ -22,7 +22,7 @@ namespace PraktickaMaturita.Controllers
         }
 
         [HttpPost]
-        public IActionResult Pridat(string nadpis, string popis)
+        public IActionResult Pridat(string nadpis, string popis, string dulezity)
         {
             if (nadpis == null || nadpis.Trim().Length == 0)
                 return RedirectToAction("Pridat");
@@ -31,6 +31,7 @@ namespace PraktickaMaturita.Controllers
 
             Poznamka pridavanaPoznamka = new Poznamka()
             {
+                Dulezitost = (dulezity == "ano"),
                 DatumVlozeni = DateTime.Now,
                 Nadpis = nadpis,
                 Popis = popis,

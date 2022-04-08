@@ -14,6 +14,8 @@ namespace PraktickaMaturita.Models
 
         public DateTime DatumVlozeni { get; set; } = DateTime.Now;
 
+        public bool Dulezitost { get; set; }
+
         [Required]
         virtual public Uzivatel? Autor { get; set; }
     }

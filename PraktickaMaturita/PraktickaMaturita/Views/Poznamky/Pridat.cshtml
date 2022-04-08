@@ -18,6 +18,8 @@ else
     <form action="/Poznamky/Pridat" method="post">
         <input required type="text" name="nadpis" placeholder="Název poznámky" />
         <input required type="text" name="popis" placeholder="Popis poznámky" />
+        <label for="dulezity">Je úkol důležitý?</label>
+        <input name="dulezity" type="checkbox" value="ano" /><br />
         <input type="submit" value="Přidat" />
     </form>
 }
