@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Session;
 using PraktickaMaturita.Data;
 using PraktickaMaturita.Models;
 using BCrypt.Net;
+using Microsoft.Net.Http;
 
 namespace PraktickaMaturita.Controllers
 {
@@ -99,19 +100,15 @@ namespace PraktickaMaturita.Controllers
         [HttpGet]
         public IActionResult Smazat()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Smazat(int mazany)
-        {
             Uzivatel? prihlasenyUzivatel = KdoJePrihlasen();
 
             if (prihlasenyUzivatel == null)
                 return RedirectToAction("Prihlasit", "Uzivatel");
 
+            int id = Url.RequestContext.RouteData.Values["id"];
+
             Uzivatel? mazanyUzivatel = _databaze.Uzivatele
-                .Where(u => u.Id == mazany)
+                .Where(u => u.Id == Convert.ToInt32(id))
                 .FirstOrDefault();
 
             if (mazanyUzivatel != null && mazanyUzivatel.Id == prihlasenyUzivatel.Id)
