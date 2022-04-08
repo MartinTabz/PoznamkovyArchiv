@@ -105,10 +105,9 @@ namespace PraktickaMaturita.Controllers
             if (prihlasenyUzivatel == null)
                 return RedirectToAction("Prihlasit", "Uzivatel");
 
-            int id = Url.RequestContext.RouteData.Values["id"];
 
             Uzivatel? mazanyUzivatel = _databaze.Uzivatele
-                .Where(u => u.Id == Convert.ToInt32(id))
+                .Where(u => u.Id == prihlasenyUzivatel.Id)
                 .FirstOrDefault();
 
             if (mazanyUzivatel != null && mazanyUzivatel.Id == prihlasenyUzivatel.Id)
@@ -117,11 +116,6 @@ namespace PraktickaMaturita.Controllers
                 _databaze.SaveChanges();
                 HttpContext.Session.Clear();
             }
-            else
-            {
-                return RedirectToAction("Privacy", "Home");
-            }
-
 
             return RedirectToAction("Index", "Home");
         }
