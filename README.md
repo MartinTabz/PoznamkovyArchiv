@@ -1,7 +1,7 @@
 # Poznámkový archiv
 *Martin Šíl*
 ---
-###NuGet Package
+### NuGet Package:
 - BCrypt.Net-Core
 - Microsoft.AspNetCore.Session
 - Microsoft.EntityFrameworkCore
