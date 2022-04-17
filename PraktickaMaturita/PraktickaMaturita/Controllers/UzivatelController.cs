@@ -100,11 +100,20 @@ namespace PraktickaMaturita.Controllers
         [HttpGet]
         public IActionResult Smazat()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Smazat(string potvrzeniHeslem)
+        {
             Uzivatel? prihlasenyUzivatel = KdoJePrihlasen();
 
             if (prihlasenyUzivatel == null)
                 return RedirectToAction("Prihlasit", "Uzivatel");
 
+            bool validPassword = BCrypt.Net.BCrypt.Verify(potvrzeniHeslem, prihlasenyUzivatel.Heslo);
+            if (validPassword == false)
+                return RedirectToAction("Smazat");
 
             Uzivatel? mazanyUzivatel = _databaze.Uzivatele
                 .Where(u => u.Id == prihlasenyUzivatel.Id)
